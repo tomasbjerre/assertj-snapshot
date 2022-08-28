@@ -1,4 +1,4 @@
-# AssertJ Snapshot - Snapshot testing with AssertJ
+# AssertJ Snapshot
 [![Maven Central](https://img.shields.io/maven-central/v/se.bjurr.assertj.snapshot/assertj-snapshot.svg?label=Maven%20Central)](https://search.maven.org/search?q=g:%22se.bjurr.assertj.snapshot%22%20AND%20a:%22assertj-snapshot%22)
 [![Javadocs](http://www.javadoc.io/badge/se.bjurr.assertj.snapshot/assertj-snapshot.svg)](http://www.javadoc.io/doc/se.bjurr.assertj.snapshot/assertj-snapshot)
 
