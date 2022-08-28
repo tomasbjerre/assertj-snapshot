@@ -7,15 +7,39 @@ import java.util.Optional;
 
 public class FileUtils {
 
-  public static String readFile(final Path path) {
-final Optional<String> opt = findFileContent(path);
-if (opt.isPresent()) {
-	return opt.get();
-}
-throw new RuntimeException(path+" not found");
+  private static FileUtils FILE_UTILS = new FileUtils();
+
+  private FileUtils() {}
+
+  public static FileUtils create() {
+    return FILE_UTILS;
   }
 
-  public static void writeFile(final Path sourceFile, final String manipulatedSourceFileContent) {
+  /** Visible for test */
+  public static void setFileUtils(final FileUtils fileUtils) {
+    FILE_UTILS = fileUtils;
+  }
+
+  public Optional<String> findFileContent(final Path path) {
+    if (Files.exists(path)) {
+      try {
+        return Optional.of(Files.readString(path));
+      } catch (final IOException e) {
+        throw new RuntimeException(e);
+      }
+    }
+    return Optional.empty();
+  }
+
+  public String getFileContent(final Path path) {
+    final Optional<String> opt = this.findFileContent(path);
+    if (opt.isPresent()) {
+      return opt.get();
+    }
+    throw new RuntimeException(path + " not found");
+  }
+
+  public void writeFileContent(final Path sourceFile, final String manipulatedSourceFileContent) {
     try {
       Files.writeString(sourceFile, manipulatedSourceFileContent);
     } catch (final IOException e) {
@@ -23,24 +47,13 @@ throw new RuntimeException(path+" not found");
     }
   }
 
-public static void createDirs(final Path path) {
-	if (!Files.exists(path)) {
-		try {
-			Files.createDirectories(path);
-		} catch (final IOException e) {
-			throw new RuntimeException(e);
-		}
-	}
-	  }
-
-public static Optional<String> findFileContent(final Path path) {
-	if (Files.exists(path)) {
-		try {
-return			Optional.of(Files.readString(path));
-		} catch (final IOException e) {
-			throw new RuntimeException(e);
-		}
-	}
-	return Optional.empty();
-}
+  public void createDirs(final Path path) {
+    if (!Files.exists(path)) {
+      try {
+        Files.createDirectories(path);
+      } catch (final IOException e) {
+        throw new RuntimeException(e);
+      }
+    }
+  }
 }

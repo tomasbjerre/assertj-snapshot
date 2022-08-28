@@ -26,7 +26,7 @@ class InternalInlineSnapshotCapturer {
   private static final Pattern INLINE_PATTERN = Pattern.compile(INLINE_REGEXP);
 
   public static void assertEqual(final Object actual, final String expected) {
-    if (expected == CAPTURE_SNAPSHOT) {
+    if (expected == null || expected == CAPTURE_SNAPSHOT || expected.trim().isEmpty()) {
       InternalInlineSnapshotCapturer.captureInlineSnapshot(actual);
     } else {
       InternalAssertions.assertEqual(actual, expected);
@@ -39,7 +39,8 @@ class InternalInlineSnapshotCapturer {
         SourceCodeLocator.getSourceFolder(testCase.getClassName(), testCase.getFile());
     final Path testCaseSourceFile =
         Paths.get(sourceFolderOfTestCase.getAbsolutePath(), testCase.getFile());
-    final String testCaseContent = FileUtils.readFile(testCaseSourceFile);
+    final FileUtils fileUtils = FileUtils.create();
+    final String testCaseContent = fileUtils.getFileContent(testCaseSourceFile);
     final Matcher matcherInline = INLINE_PATTERN.matcher(testCaseContent);
     if (!matcherInline.find()) {
       throw new RuntimeException("Cannot find " + INLINE_REGEXP + " in " + testCaseContent);
@@ -48,6 +49,6 @@ class InternalInlineSnapshotCapturer {
     final String manipulatedTestCaseContent =
         matcherInline.replaceFirst(
             "assertThat($1)\n.matchesInlineSnapshot(\"\"\"\n" + jsonToUseAsExpected + "\n\"\"\")");
-    FileUtils.writeFile(testCaseSourceFile, manipulatedTestCaseContent);
+    fileUtils.writeFileContent(testCaseSourceFile, manipulatedTestCaseContent);
   }
 }

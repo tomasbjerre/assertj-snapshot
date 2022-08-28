@@ -1,14 +1,16 @@
-package test;
+package test.examples;
 
 import static org.assertj.snapshot.api.Assertions.assertThat;
 
 import org.junit.jupiter.api.Test;
+import test.utils.DummyObject;
+import test.utils.TestDataFactory;
 
 public class MatchesSnapshot {
 
   @Test
   public void matchesSnapshot() {
-    final String whatever = "hey oh";
+    final DummyObject whatever = TestDataFactory.createDummyObject();
     assertThat(whatever).matchesSnapshot();
   }
 }
