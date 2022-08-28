@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd ">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd ">
 	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
@@ -12,14 +10,16 @@
 	</parent>
 
 	<artifactId>assertj-snapshot</artifactId>
-	<version>1.0.0-SNAPSHOT</version>
+	<version>1.0.1</version>
+	<groupId>se.bjurr.assertj.snapshot</groupId>
 
 	<name>AssertJ fluent assertions for snapshots</name>
 	<description>Rich and fluent assertions for testing snapshots</description>
 	<url>${project.organization.url}#${project.artifactId}</url>
+	<inceptionYear>2022</inceptionYear>
 
 	<scm>
-		<developerConnection>scm:git:https://github.com/tomasbjerre/assertj-snapshot.git</developerConnection>
+		<developerConnection>scm:git:git@github.com:tomasbjerre/assertj-snapshot.git</developerConnection>
 		<connection>scm:git:https://github.com/tomasbjerre/assertj-snapshot.git</connection>
 		<url>https://github.com/tomasbjerre/assertj-snapshot</url>
 		<tag>HEAD</tag>
@@ -28,6 +28,30 @@
 		<system>GitHub</system>
 		<url>https://github.com/tomasbjerre/assertj-snapshot/issues</url>
 	</issueManagement>
+
+	<distributionManagement>
+		<repository>
+			<id>ossrh</id>
+			<url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+		</repository>
+	</distributionManagement>
+
+	<licenses>
+		<license>
+			<name>Apache License, Version 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
+
+	<developers>
+		<developer>
+			<id>tomasbjerre</id>
+			<name>Tomas Bjerre</name>
+			<email>tomas.bjerre85@gmail.com</email>
+			<url>http://bjurr.se/</url>
+		</developer>
+	</developers>
 
 	<properties>
 		<assertj-core.version>3.23.1</assertj-core.version>
@@ -69,7 +93,50 @@
 					</execution>
 				</executions>
 			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-release-plugin</artifactId>
+				<version>3.0.0-M4</version>
+				<configuration>
+					<autoVersionSubmodules>true</autoVersionSubmodules>
+					<releaseProfiles>release-sign-artifacts</releaseProfiles>
+					<goals>deploy</goals>
+					<checkModificationExcludes>
+						<checkModificationExclude>pom.xml</checkModificationExclude>
+					</checkModificationExcludes>
+				</configuration>
+			</plugin>
 		</plugins>
 	</build>
+
+	<profiles>
+		<profile>
+			<id>release-sign-artifacts</id>
+			<activation>
+				<property>
+					<name>performRelease</name>
+					<value>true</value>
+				</property>
+			</activation>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-gpg-plugin</artifactId>
+						<version>3.0.1</version>
+						<executions>
+							<execution>
+								<id>sign-artifacts</id>
+								<phase>verify</phase>
+								<goals>
+									<goal>sign</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
 
 </project>
