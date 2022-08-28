@@ -2,6 +2,8 @@
 
 Changelog of assertj-snapshot.
 
+## assertj-snapshot-0.0.3 (2022-08-28)
+
 ## assertj-snapshot-0.0.1 (2022-08-28)
 
 ### Other changes
