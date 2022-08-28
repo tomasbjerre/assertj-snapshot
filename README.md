@@ -1,0 +1,1 @@
+AssertJ Assertions for snapshot testing
