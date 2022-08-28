@@ -6,6 +6,7 @@ import java.nio.file.Paths;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import org.assertj.snapshot.internal.utils.FileUtils;
+import org.assertj.snapshot.internal.utils.FileUtilsImpl;
 import org.assertj.snapshot.internal.utils.JSONUtils;
 import org.assertj.snapshot.internal.utils.SourceCodeLocator;
 import org.assertj.snapshot.internal.utils.TestCaseFinder;
@@ -21,8 +22,7 @@ import org.assertj.snapshot.internal.utils.TestCaseFinder.AssertingTestCase;
 class InternalInlineSnapshotCapturer {
   static final String CAPTURE_SNAPSHOT = "<capture-snapshot>";
 
-  private static final String INLINE_REGEXP =
-      "\\sassertThat\\((.*)\\)\\s*.matchesInlineSnapshot\\(\\)";
+  private static final String INLINE_REGEXP = "\\.\s*matchesInlineSnapshot\\(\\)";
   private static final Pattern INLINE_PATTERN = Pattern.compile(INLINE_REGEXP);
 
   public static void assertEqual(final Object actual, final String expected) {
@@ -39,7 +39,7 @@ class InternalInlineSnapshotCapturer {
         SourceCodeLocator.getSourceFolder(testCase.getClassName(), testCase.getFile());
     final Path testCaseSourceFile =
         Paths.get(sourceFolderOfTestCase.getAbsolutePath(), testCase.getFile());
-    final FileUtils fileUtils = FileUtils.create();
+    final FileUtils fileUtils = FileUtilsImpl.create();
     final String testCaseContent = fileUtils.getFileContent(testCaseSourceFile);
     final Matcher matcherInline = INLINE_PATTERN.matcher(testCaseContent);
     if (!matcherInline.find()) {
@@ -48,7 +48,7 @@ class InternalInlineSnapshotCapturer {
     final String jsonToUseAsExpected = JSONUtils.prettyPrint(actual);
     final String manipulatedTestCaseContent =
         matcherInline.replaceFirst(
-            "assertThat($1)\n.matchesInlineSnapshot(\"\"\"\n" + jsonToUseAsExpected + "\n\"\"\")");
+            "\\.matchesInlineSnapshot(\"\"\"\n" + jsonToUseAsExpected + "\n\"\"\")");
     fileUtils.writeFileContent(testCaseSourceFile, manipulatedTestCaseContent);
   }
 }

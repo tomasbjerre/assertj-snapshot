@@ -5,6 +5,7 @@ import java.nio.file.Path;
 import java.util.Optional;
 import org.assertj.core.api.Assertions;
 import org.assertj.snapshot.internal.utils.FileUtils;
+import org.assertj.snapshot.internal.utils.FileUtilsImpl;
 import org.assertj.snapshot.internal.utils.JSONUtils;
 import org.assertj.snapshot.internal.utils.SourceCodeLocator;
 import org.assertj.snapshot.internal.utils.TestCaseFinder;
@@ -19,8 +20,10 @@ public class InternalFileAssertions {
     final File sourceFolderOfTestCase =
         SourceCodeLocator.getSourceFolder(testCase.getClassName(), testCase.getFile());
     final Path snapshotsFolder = sourceFolderOfTestCase.toPath().resolve(SNAPSHOTS_DIR);
-    final FileUtils fileUtils = FileUtils.create();
-    fileUtils.createDirs(snapshotsFolder);
+    final FileUtils fileUtils = FileUtilsImpl.create();
+    if (!fileUtils.pathExists(snapshotsFolder)) {
+      fileUtils.createDirs(snapshotsFolder);
+    }
     final Path snapshotFile =
         snapshotsFolder.resolve(
             testCase.getClassName() + "_" + testCase.getMethodName() + ".snapshot.json");
