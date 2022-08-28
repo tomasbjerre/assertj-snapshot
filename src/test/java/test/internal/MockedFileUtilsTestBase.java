@@ -20,7 +20,7 @@ import org.assertj.snapshot.internal.utils.FileUtilsImpl;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 
-public class MockedFileUtilsTest {
+public class MockedFileUtilsTestBase {
   private MockedFileUtils fileUtils;
 
   @BeforeEach

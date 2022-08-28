@@ -16,13 +16,13 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import org.assertj.snapshot.api.Assertions;
 import org.junit.jupiter.api.Test;
-import test.internal.MockedFileUtilsTest;
+import test.internal.MockedFileUtilsTestBase;
 import test.utils.DummyObject;
 import test.utils.TestDataFactory;
 
-class MatchesInlineSnapshotTest_same_line extends MockedFileUtilsTest {
+class MatchesInlineSnapshot_next_line_Test extends MockedFileUtilsTestBase {
   @Test
-  void testThatInlineSnapshotCanBeUpdated_same_line() {
+  void testThatInlineSnapshotCanBeUpdated_next_line() {
     final DummyObject given = TestDataFactory.createDummyObject();
 
     Assertions.assertThat(given).matchesInlineSnapshot();

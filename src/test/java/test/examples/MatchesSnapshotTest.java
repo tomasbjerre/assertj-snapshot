@@ -10,26 +10,19 @@
  *
  * Copyright 2022-2022 the original author or authors.
  */
-package test.internal.inlineassertion;
+package test.examples;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.snapshot.api.Assertions.assertThat;
 
-import org.assertj.snapshot.api.Assertions;
 import org.junit.jupiter.api.Test;
-import test.internal.MockedFileUtilsTest;
 import test.utils.DummyObject;
 import test.utils.TestDataFactory;
 
-class MatchesInlineSnapshotTest_next_line_comment extends MockedFileUtilsTest {
+public class MatchesSnapshotTest {
+
   @Test
-  void testThatInlineSnapshotCanBeUpdated_next_line() {
-    final DummyObject given = TestDataFactory.createDummyObject();
-
-    Assertions.assertThat(given) //
-        .matchesInlineSnapshot();
-
-    this.removeFileUtilsMock();
-    assertThat(this.getCreatedDirs()).isEqualTo(null);
-    Assertions.assertThat(this.getWrittenContent()).matchesSnapshot();
+  public void matchesSnapshot() {
+    final DummyObject whatever = TestDataFactory.createDummyObject();
+    assertThat(whatever).matchesSnapshot();
   }
 }

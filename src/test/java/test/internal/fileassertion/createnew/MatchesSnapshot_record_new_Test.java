@@ -10,21 +10,35 @@
  *
  * Copyright 2022-2022 the original author or authors.
  */
-package test.internal.fileassertion.existing;
+package test.internal.fileassertion.createnew;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 import org.assertj.snapshot.api.Assertions;
 import org.junit.jupiter.api.Test;
-import test.internal.MockedFileUtilsTest;
+import test.internal.MockedFileUtilsTestBase;
 import test.utils.DummyObject;
 import test.utils.TestDataFactory;
 
-class MatchesSnapshotTest_verify_existing extends MockedFileUtilsTest {
+class MatchesSnapshot_record_new_Test extends MockedFileUtilsTestBase {
   @Test
-  void testThatSnapshotCanBeRead() {
+  void testThatSnapshotCanBeRecorded() {
     final DummyObject given = TestDataFactory.createDummyObject();
+
     Assertions.assertThat(given) //
         .matchesSnapshot();
 
-    this.assertNoWrittenContent();
+    assertThat(this.getCreatedDirs())
+        .endsWith("src/test/java/test/internal/fileassertion/createnew/snapshots");
+    assertThat(
+            this.getWrittenContent(
+                "test.internal.fileassertion.createnew.MatchesSnapshot_record_new_Test_testThatSnapshotCanBeRecorded.snapshot.json"))
+        .isEqualToIgnoringWhitespace(
+            """
+		        		{
+						  "someAttr1" : "abc",
+						  "someAttr2" : 123
+						}
+		        		""");
   }
 }

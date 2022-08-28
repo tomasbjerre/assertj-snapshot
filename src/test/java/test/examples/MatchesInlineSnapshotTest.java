@@ -18,11 +18,17 @@ import org.junit.jupiter.api.Test;
 import test.utils.DummyObject;
 import test.utils.TestDataFactory;
 
-public class MatchesSnapshot {
+public class MatchesInlineSnapshotTest {
 
   @Test
-  public void matchesSnapshot() {
+  public void matchesInlineSnapshot() {
     final DummyObject whatever = TestDataFactory.createDummyObject();
-    assertThat(whatever).matchesSnapshot();
+    assertThat(whatever)
+        .matchesInlineSnapshot("""
+{
+  "someAttr1" : "abc",
+  "someAttr2" : 123
+}
+""");
   }
 }

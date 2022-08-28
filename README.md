@@ -41,3 +41,5 @@ assertThat(anyObject)
   }
  """);
 ```
+
+Any future runs will verify against that snapshot.

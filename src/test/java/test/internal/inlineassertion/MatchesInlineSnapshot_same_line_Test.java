@@ -10,25 +10,25 @@
  *
  * Copyright 2022-2022 the original author or authors.
  */
-package test.examples;
+package test.internal.inlineassertion;
 
-import static org.assertj.snapshot.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
 
+import org.assertj.snapshot.api.Assertions;
 import org.junit.jupiter.api.Test;
+import test.internal.MockedFileUtilsTestBase;
 import test.utils.DummyObject;
 import test.utils.TestDataFactory;
 
-public class MatchesInlineSnapshot {
-
+class MatchesInlineSnapshot_same_line_Test extends MockedFileUtilsTestBase {
   @Test
-  public void matchesInlineSnapshot() {
-    final DummyObject whatever = TestDataFactory.createDummyObject();
-    assertThat(whatever)
-        .matchesInlineSnapshot("""
-{
-  "someAttr1" : "abc",
-  "someAttr2" : 123
-}
-""");
+  void testThatInlineSnapshotCanBeUpdated_same_line() {
+    final DummyObject given = TestDataFactory.createDummyObject();
+
+    Assertions.assertThat(given).matchesInlineSnapshot();
+
+    this.removeFileUtilsMock();
+    assertThat(this.getCreatedDirs()).isEqualTo(null);
+    Assertions.assertThat(this.getWrittenContent()).matchesSnapshot();
   }
 }
