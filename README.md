@@ -4,6 +4,8 @@
 
 This library extends [AssertJ](https://github.com/assertj/assertj) with snapshot assertions. Inspired by the same feature in [Jest](https://jestjs.io/docs/snapshot-testing).
 
+![Demo](demo.gif)
+
 ## Examples
 
 There are running examples in the [repository](/src/test/java/test/examples).
