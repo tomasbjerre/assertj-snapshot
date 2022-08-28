@@ -19,7 +19,7 @@ assertThat(anyObject)
  .matchesSnapshot();
 ```
 
-First time this code is run, a snapshot-file will be created. Any future runs will verify agains that snapshot-file.
+First time this code is run, a snapshot file will be created. Any future runs will verify against that snapshot.
 
 A `snapshot` can also be recorded inline, in the test case:
 
