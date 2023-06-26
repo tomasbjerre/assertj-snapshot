@@ -24,11 +24,11 @@ public class MatchesInlineSnapshotTest {
   public void matchesInlineSnapshot() {
     final DummyObject whatever = TestDataFactory.createDummyObject();
     assertThat(whatever)
-        .matchesInlineSnapshot("""
-{
-  "someAttr1" : "abc",
-  "someAttr2" : 123
-}
-""");
+        .matchesInlineSnapshot(
+            """
+            {
+              "someAttr1" : "abc",
+              "someAttr2" : 123
+            }""");
   }
 }

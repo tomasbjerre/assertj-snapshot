@@ -12,11 +12,20 @@
  */
 package org.assertj.snapshot.internal.assertions;
 
+import com.github.javaparser.StaticJavaParser;
+import com.github.javaparser.ast.CompilationUnit;
+import com.github.javaparser.ast.body.ClassOrInterfaceDeclaration;
+import com.github.javaparser.ast.body.MethodDeclaration;
+import com.github.javaparser.ast.expr.MethodCallExpr;
+import com.github.javaparser.ast.expr.SimpleName;
+import com.github.javaparser.ast.expr.TextBlockLiteralExpr;
+import com.github.javaparser.ast.stmt.BlockStmt;
+import com.github.javaparser.ast.stmt.Statement;
 import java.io.File;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import java.util.List;
+import java.util.Optional;
 import org.assertj.snapshot.internal.utils.FileUtils;
 import org.assertj.snapshot.internal.utils.FileUtilsImpl;
 import org.assertj.snapshot.internal.utils.JSONUtils;
@@ -34,9 +43,6 @@ import org.assertj.snapshot.internal.utils.TestCaseFinder.AssertingTestCase;
 class InternalInlineSnapshotCapturer {
   static final String CAPTURE_SNAPSHOT = "<capture-snapshot>";
 
-  private static final String INLINE_REGEXP = "\\.\s*matchesInlineSnapshot\\(\\)";
-  private static final Pattern INLINE_PATTERN = Pattern.compile(INLINE_REGEXP);
-
   public static void assertEqual(final Object actual, final String expected) {
     if (expected == null || expected.equals(CAPTURE_SNAPSHOT) || expected.trim().isEmpty()) {
       InternalInlineSnapshotCapturer.captureInlineSnapshot(actual);
@@ -46,21 +52,80 @@ class InternalInlineSnapshotCapturer {
   }
 
   static void captureInlineSnapshot(final Object actual) {
+    final FileUtils fileUtils = FileUtilsImpl.create();
     final AssertingTestCase testCase = TestCaseFinder.getTestCase();
+
+    final Path testCaseSourceFile = getTestCaseSourceFile(testCase);
+    final String testCaseSourceFileContent = fileUtils.getFileContent(testCaseSourceFile);
+
+    final String jsonToUseAsExpected = JSONUtils.prettyPrint(actual);
+
+    final String manipulatedTestCaseContent =
+        manipulateTestCase(testCase, testCaseSourceFileContent, jsonToUseAsExpected);
+
+    fileUtils.writeFileContent(testCaseSourceFile, manipulatedTestCaseContent);
+  }
+
+  private static Path getTestCaseSourceFile(final AssertingTestCase testCase) {
     final File sourceFolderOfTestCase =
         SourceCodeLocator.getSourceFolder(testCase.getClassName(), testCase.getFile());
     final Path testCaseSourceFile =
         Paths.get(sourceFolderOfTestCase.getAbsolutePath(), testCase.getFile());
-    final FileUtils fileUtils = FileUtilsImpl.create();
-    final String testCaseContent = fileUtils.getFileContent(testCaseSourceFile);
-    final Matcher matcherInline = INLINE_PATTERN.matcher(testCaseContent);
-    if (!matcherInline.find()) {
-      throw new RuntimeException("Cannot find " + INLINE_REGEXP + " in " + testCaseContent);
+    return testCaseSourceFile;
+  }
+
+  private static String manipulateTestCase(
+      final AssertingTestCase testCase,
+      final String testCaseContent,
+      final String jsonToUseAsExpected) {
+    final CompilationUnit compilationUnit = StaticJavaParser.parse(testCaseContent);
+
+    final String classSimpleName =
+        testCase.getClassName().substring(testCase.getClassName().lastIndexOf(".") + 1);
+    final Optional<ClassOrInterfaceDeclaration> classOrINterfaceOpt =
+        compilationUnit.getClassByName(classSimpleName);
+
+    if (classOrINterfaceOpt.isEmpty()) {
+      throw new IllegalStateException("Cannot find " + classSimpleName + " in " + testCaseContent);
     }
-    final String jsonToUseAsExpected = JSONUtils.prettyPrint(actual);
-    final String manipulatedTestCaseContent =
-        matcherInline.replaceFirst(
-            "\\.matchesInlineSnapshot(\"\"\"\n" + jsonToUseAsExpected + "\n\"\"\")");
-    fileUtils.writeFileContent(testCaseSourceFile, manipulatedTestCaseContent);
+    final ClassOrInterfaceDeclaration classOrINterface = classOrINterfaceOpt.get();
+
+    final List<MethodDeclaration> methods =
+        classOrINterface.getMethodsByName(testCase.getMethodName());
+    if (methods.isEmpty() || methods.size() > 1) {
+      throw new IllegalStateException(
+          "Cannot find " + testCase.getMethodName() + " in " + testCaseContent);
+    }
+    final MethodDeclaration method = methods.get(0);
+
+    final BlockStmt methodBlock = method.getBody().get();
+
+    for (final Statement statement : methodBlock.getStatements()) {
+      final List<MethodCallExpr> methodCallExprs = statement.findAll(MethodCallExpr.class);
+      for (final MethodCallExpr methodCallExpr : methodCallExprs) {
+        final List<SimpleName> allSimpleNameNodes = methodCallExpr.findAll(SimpleName.class);
+        final boolean ifMatchesAssertThat =
+            allSimpleNameNodes.stream()
+                .filter(it -> it.getId().equals("assertThat"))
+                .findFirst()
+                .isPresent();
+        final boolean ifMatchesInlineSnapshot =
+            allSimpleNameNodes.stream()
+                .filter(it -> it.getId().equals("matchesInlineSnapshot"))
+                .findFirst()
+                .isPresent();
+        if (ifMatchesAssertThat && ifMatchesInlineSnapshot) {
+          if (methodCallExpr.getArguments().size() == 0) {
+            methodCallExpr.addArgument(new TextBlockLiteralExpr(jsonToUseAsExpected));
+          } else if (methodCallExpr.getArguments().size() == 1) {
+            methodCallExpr.setArgument(0, new TextBlockLiteralExpr(jsonToUseAsExpected));
+          } else {
+            throw new IllegalStateException("Cannot find argument");
+          }
+        }
+      }
+    }
+
+    return compilationUnit.toString();
   }
 }
