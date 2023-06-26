@@ -1,10 +1,14 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?><project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd ">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd
+						">
 	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
-        <groupId>se.bjurr.bom</groupId>
-        <artifactId>bjurr-bom</artifactId>
-        <version>0.6.2</version>
+		<groupId>se.bjurr.bom</groupId>
+		<artifactId>bjurr-bom</artifactId>
+		<version>0.6.2</version>
 	</parent>
 
 	<artifactId>assertj-snapshot</artifactId>
@@ -13,38 +17,20 @@
 
 	<name>AssertJ fluent assertions for snapshots</name>
 	<description>Rich and fluent assertions for testing snapshots</description>
-	<url>${project.organization.url}#${project.artifactId}</url>
 	<inceptionYear>2022</inceptionYear>
 
 	<scm>
-		<developerConnection>scm:git:git@github.com:tomasbjerre/assertj-snapshot.git</developerConnection>
+		<developerConnection>
+			scm:git:git@github.com:tomasbjerre/assertj-snapshot.git</developerConnection>
 		<connection>scm:git:https://github.com/tomasbjerre/assertj-snapshot.git</connection>
 		<url>https://github.com/tomasbjerre/assertj-snapshot</url>
 		<tag>HEAD</tag>
 	</scm>
-	
+
 	<issueManagement>
 		<system>GitHub</system>
 		<url>https://github.com/tomasbjerre/assertj-snapshot/issues</url>
 	</issueManagement>
-
-
-	<licenses>
-		<license>
-			<name>Apache License, Version 2.0</name>
-			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
-			<distribution>repo</distribution>
-		</license>
-	</licenses>
-
-	<developers>
-		<developer>
-			<id>tomasbjerre</id>
-			<name>Tomas Bjerre</name>
-			<email>tomas.bjerre85@gmail.com</email>
-			<url>http://bjurr.se/</url>
-		</developer>
-	</developers>
 
 	<properties>
 		<assertj-core.version>3.23.1</assertj-core.version>
@@ -56,9 +42,9 @@
 
 	<dependencies>
 		<dependency>
-		    <groupId>com.github.javaparser</groupId>
-		    <artifactId>javaparser-symbol-solver-core</artifactId>
-		    <version>3.25.3</version>
+			<groupId>com.github.javaparser</groupId>
+			<artifactId>javaparser-symbol-solver-core</artifactId>
+			<version>3.25.3</version>
 		</dependency>
 		<dependency>
 			<groupId>org.assertj</groupId>
