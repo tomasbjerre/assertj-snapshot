@@ -2,6 +2,12 @@
 
 Changelog of assertj-snapshot.
 
+## 0.1.2 (2023-06-26)
+
+### Bug Fixes
+
+-  javadoc sources ([0a465](https://github.com/tomasbjerre/assertj-snapshot/commit/0a465057591d1a2) Tomas Bjerre)  
+
 ## 0.1.1 (2023-06-26)
 
 ## 0.1.0 (2023-06-26)
