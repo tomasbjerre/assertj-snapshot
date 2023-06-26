@@ -8,7 +8,7 @@
 	</parent>
 
 	<artifactId>assertj-snapshot</artifactId>
-	<version>0.1.6</version>
+	<version>0.1.7-SNAPSHOT</version>
 	<groupId>se.bjurr.assertj.snapshot</groupId>
 
 	<name>AssertJ fluent assertions for snapshots</name>
@@ -20,7 +20,7 @@
 		<developerConnection>scm:git:git@github.com:tomasbjerre/assertj-snapshot.git</developerConnection>
 		<connection>scm:git:https://github.com/tomasbjerre/assertj-snapshot.git</connection>
 		<url>https://github.com/tomasbjerre/assertj-snapshot</url>
-		<tag>assertj-snapshot-0.1.6</tag>
+		<tag>HEAD</tag>
 	</scm>
 	
 	<issueManagement>
