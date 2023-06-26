@@ -33,13 +33,6 @@ import org.assertj.snapshot.internal.utils.SourceCodeLocator;
 import org.assertj.snapshot.internal.utils.TestCaseFinder;
 import org.assertj.snapshot.internal.utils.TestCaseFinder.AssertingTestCase;
 
-/**
- * TODO: When any proper java editing library has support for java 17, use that instead of regexp.
- *
- * <p>https://github.com/javaparser/javaparser
- *
- * <p>https://spoon.gforge.inria.fr/
- */
 class InternalInlineSnapshotCapturer {
   static final String CAPTURE_SNAPSHOT = "<capture-snapshot>";
 
