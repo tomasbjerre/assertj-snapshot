@@ -12,6 +12,7 @@
  */
 package org.assertj.snapshot.internal.utils;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -25,11 +26,13 @@ public class FileUtilsImpl implements FileUtils {
 
   public FileUtilsImpl() {}
 
+  @SuppressFBWarnings
   public static FileUtils create() {
     return FILE_UTILS;
   }
 
   /** Visible for test */
+  @SuppressFBWarnings
   public static void setFileUtils(final FileUtils fileUtils) {
     LOG.info(FILE_UTILS.toString());
     FILE_UTILS = fileUtils;

@@ -38,7 +38,7 @@ class InternalInlineSnapshotCapturer {
   private static final Pattern INLINE_PATTERN = Pattern.compile(INLINE_REGEXP);
 
   public static void assertEqual(final Object actual, final String expected) {
-    if (expected == null || expected == CAPTURE_SNAPSHOT || expected.trim().isEmpty()) {
+    if (expected == null || expected.equals(CAPTURE_SNAPSHOT) || expected.trim().isEmpty()) {
       InternalInlineSnapshotCapturer.captureInlineSnapshot(actual);
     } else {
       InternalAssertions.assertEqual(actual, expected);
