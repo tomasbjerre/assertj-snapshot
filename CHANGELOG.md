@@ -2,9 +2,19 @@
 
 Changelog of assertj-snapshot.
 
-## assertj-snapshot-0.0.3 (2022-08-28)
+## 0.1.0 (2023-06-26)
 
-## assertj-snapshot-0.0.1 (2022-08-28)
+### Features
+
+-  support java 17 ([509a6](https://github.com/tomasbjerre/assertj-snapshot/commit/509a63ad16992e4) Tomas Bjerre)  
+
+### Bug Fixes
+
+-  parse using javaparser library ([857fd](https://github.com/tomasbjerre/assertj-snapshot/commit/857fd0b0afa5b12) Tomas Bjerre)  [#1](https://github.com/tomasbjerre/assertj-snapshot/issues/1)  
+
+## 0.0.3 (2022-08-28)
+
+## 0.0.1 (2022-08-28)
 
 ### Other changes
 
