@@ -20,4 +20,17 @@ public class MatchesInlineSnapshotTest {
             }
             """);
   }
+
+  @Test
+  public void matchesInlineSnapshot2() {
+    final DummyObject whatever2 = TestDataFactory.createAnotherDummyObject();
+    assertThat(whatever2)
+        .matchesInlineSnapshot(
+            """
+            {
+              "someAttr1" : "def",
+              "someAttr2" : 456
+            }
+            """);
+  }
 }

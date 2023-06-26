@@ -1,5 +1,6 @@
 package org.assertj.snapshot.internal.assertions;
 
+import com.github.javaparser.ParserConfiguration.LanguageLevel;
 import com.github.javaparser.StaticJavaParser;
 import com.github.javaparser.ast.CompilationUnit;
 import com.github.javaparser.ast.body.ClassOrInterfaceDeclaration;
@@ -19,6 +20,7 @@ public class JavaCodeManipulator {
       final AssertingTestCase testCase,
       final String testCaseContent,
       final String jsonToUseAsExpected) {
+    StaticJavaParser.getParserConfiguration().setLanguageLevel(LanguageLevel.JAVA_17);
     final CompilationUnit compilationUnit = StaticJavaParser.parse(testCaseContent);
 
     final String classSimpleName =
