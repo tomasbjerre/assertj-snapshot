@@ -2,6 +2,12 @@
 
 Changelog of assertj-snapshot.
 
+## 0.1.5 (2023-06-26)
+
+### Bug Fixes
+
+-  parse as java 17 ([699f4](https://github.com/tomasbjerre/assertj-snapshot/commit/699f4ee18e476d2) Tomas Bjerre)  
+
 ## 0.1.4 (2023-06-26)
 
 ## 0.1.3 (2023-06-26)
