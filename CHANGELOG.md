@@ -2,6 +2,12 @@
 
 Changelog of assertj-snapshot.
 
+## 0.1.6 (2023-06-26)
+
+### Bug Fixes
+
+-  multiple inlineSnapshots per testcase ([f3fc9](https://github.com/tomasbjerre/assertj-snapshot/commit/f3fc97ebe6821f7) Tomas Bjerre)  
+
 ## 0.1.5 (2023-06-26)
 
 ### Bug Fixes
