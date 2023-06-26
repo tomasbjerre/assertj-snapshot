@@ -13,8 +13,15 @@ import org.assertj.snapshot.internal.utils.TestCaseFinder.AssertingTestCase;
 class InternalInlineSnapshotCapturer {
   static final String CAPTURE_SNAPSHOT = "<capture-snapshot>";
 
-  public static void assertEqual(final Object actual, final String expected) {
-    if (expected == null || expected.equals(CAPTURE_SNAPSHOT) || expected.trim().isEmpty()) {
+  public static void assertEqual(
+      final Object actual, final String expected, final UPDATE_MODE updateMode) {
+
+    final boolean expectedDoesNotExist =
+        expected == null || expected.equals(CAPTURE_SNAPSHOT) || expected.trim().isEmpty();
+    final boolean shouldUpdate =
+        expectedDoesNotExist && updateMode == UPDATE_MODE.UPDATE_IF_NO_PREVIOUS_SNAPSHOT //
+            || updateMode == UPDATE_MODE.UPDATE_ALWAYS;
+    if (shouldUpdate) {
       InternalInlineSnapshotCapturer.captureInlineSnapshot(actual);
     } else {
       InternalAssertions.assertEqual(actual, expected);

@@ -15,7 +15,7 @@ public class InternalFileAssertions {
 
   private static final String SNAPSHOTS_DIR = "snapshots";
 
-  public static void assertEqual(final Object actual) {
+  public static void assertEqual(final Object actual, final UPDATE_MODE updateMode) {
     final AssertingTestCase testCase = TestCaseFinder.getTestCase();
     final File sourceFolderOfTestCase =
         SourceCodeLocator.getSourceFolder(testCase.getClassName(), testCase.getFile());
@@ -29,11 +29,16 @@ public class InternalFileAssertions {
             testCase.getClassName() + "_" + testCase.getMethodName() + ".snapshot.json");
     final Optional<String> snapshotOpt = fileUtils.findFileContent(snapshotFile);
     final String actualJson = JSONUtils.prettyPrint(actual);
-    if (snapshotOpt.isPresent()) {
+
+    final boolean expectedDoesNotExist = !snapshotOpt.isPresent();
+    final boolean shouldUpdate =
+        expectedDoesNotExist && updateMode == UPDATE_MODE.UPDATE_IF_NO_PREVIOUS_SNAPSHOT //
+            || updateMode == UPDATE_MODE.UPDATE_ALWAYS;
+    if (shouldUpdate) {
+      fileUtils.writeFileContent(snapshotFile, actualJson);
+    } else {
       final String normalized = JSONUtils.prettyPrint(snapshotOpt.get());
       Assertions.assertThat(actualJson).isEqualTo(normalized);
-    } else {
-      fileUtils.writeFileContent(snapshotFile, actualJson);
     }
   }
 }
