@@ -2,6 +2,17 @@
 
 Changelog of assertj-snapshot.
 
+## 1.0.0 (2023-06-26)
+
+### Breaking changes
+
+-  triggering 1.0.0 version ([0c567](https://github.com/tomasbjerre/assertj-snapshot/commit/0c567c87ffdef18) Tomas Bjerre)  
+
+### Features
+
+-  triggering 1.0.0 version ([0c567](https://github.com/tomasbjerre/assertj-snapshot/commit/0c567c87ffdef18) Tomas Bjerre)  
+-  updatemode ([dfe51](https://github.com/tomasbjerre/assertj-snapshot/commit/dfe514587365f5e) Tomas Bjerre)  
+
 ## 0.1.6 (2023-06-26)
 
 ### Bug Fixes
