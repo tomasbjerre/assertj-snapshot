@@ -48,19 +48,17 @@ public class JavaCodeManipulator {
       for (final MethodCallExpr methodCallExpr : methodCallExprs) {
         final List<SimpleName> allSimpleNameNodes = methodCallExpr.findAll(SimpleName.class);
 
-        final boolean ifMatchesAssertThat =
-            allSimpleNameNodes.stream()
-                .filter(it -> it.getId().equals("assertThat"))
-                .findFirst()
-                .isPresent();
-
         final boolean ifMatchesInlineSnapshot =
             allSimpleNameNodes.stream()
-                .filter(it -> it.getId().equals("matchesInlineSnapshot"))
+                .filter(
+                    it -> {
+                      return it.getId().equals("matchesInlineSnapshot")
+                          && it.getBegin().get().line == testCase.getLineNumber();
+                    })
                 .findFirst()
                 .isPresent();
 
-        if (ifMatchesAssertThat && ifMatchesInlineSnapshot) {
+        if (ifMatchesInlineSnapshot) {
           if (methodCallExpr.getArguments().size() == 0) {
             methodCallExpr.addArgument(new TextBlockLiteralExpr(jsonToUseAsExpected));
           } else if (methodCallExpr.getArguments().size() == 1) {
@@ -68,10 +66,12 @@ public class JavaCodeManipulator {
           } else {
             throw new IllegalStateException("Cannot find argument");
           }
+          return compilationUnit.toString();
         }
       }
     }
 
-    return compilationUnit.toString();
+    throw new IllegalStateException(
+        "Unable to match assertion\n" + testCaseContent + "\n\n" + testCaseContent);
   }
 }

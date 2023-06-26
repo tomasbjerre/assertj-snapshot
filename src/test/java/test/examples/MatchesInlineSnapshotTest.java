@@ -33,4 +33,26 @@ public class MatchesInlineSnapshotTest {
             }
             """);
   }
+
+  @Test
+  public void matchesInlineSnapshot_double_assert() {
+    final DummyObject whatever1 = TestDataFactory.createDummyObject();
+    assertThat(whatever1)
+        .matchesInlineSnapshot(
+            """
+            {
+              "someAttr1" : "abc",
+              "someAttr2" : 123
+            }
+            """);
+    final DummyObject whatever2 = TestDataFactory.createAnotherDummyObject();
+    assertThat(whatever2)
+        .matchesInlineSnapshot(
+            """
+            {
+              "someAttr1" : "def",
+              "someAttr2" : 456
+            }
+            """);
+  }
 }
