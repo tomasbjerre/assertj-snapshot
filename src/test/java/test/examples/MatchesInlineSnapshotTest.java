@@ -2,7 +2,7 @@ package test.examples;
 
 import static org.assertj.snapshot.api.Assertions.assertThat;
 
-import org.assertj.snapshot.internal.assertions.UPDATE_MODE;
+import org.assertj.snapshot.api.UpdateMode;
 import org.junit.jupiter.api.Test;
 import test.utils.DummyObject;
 import test.utils.TestDataFactory;
@@ -61,7 +61,7 @@ public class MatchesInlineSnapshotTest {
   public void matchesInlineSnapshot_always_update() {
     final DummyObject whatever1 = TestDataFactory.createDummyObject();
     assertThat(whatever1)
-        .withUpdateMode(UPDATE_MODE.UPDATE_ALWAYS)
+        .withUpdateMode(UpdateMode.UPDATE_ALWAYS)
         .matchesInlineSnapshot(
             """
             {

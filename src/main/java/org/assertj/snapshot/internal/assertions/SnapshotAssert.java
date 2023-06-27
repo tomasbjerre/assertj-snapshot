@@ -1,16 +1,17 @@
 package org.assertj.snapshot.internal.assertions;
 
 import org.assertj.core.api.AbstractAssert;
+import org.assertj.snapshot.api.UpdateMode;
 
 public class SnapshotAssert extends AbstractAssert<SnapshotAssert, Object> {
 
-  private UPDATE_MODE updateMode = UPDATE_MODE.UPDATE_IF_NO_PREVIOUS_SNAPSHOT;
+  private UpdateMode updateMode = UpdateMode.UPDATE_IF_NO_PREVIOUS_SNAPSHOT;
 
   public SnapshotAssert(final Object actual) {
     super(actual, SnapshotAssert.class);
   }
 
-  public SnapshotAssert withUpdateMode(final UPDATE_MODE updateMode) {
+  public SnapshotAssert withUpdateMode(final UpdateMode updateMode) {
     this.updateMode = updateMode;
     return this;
   }

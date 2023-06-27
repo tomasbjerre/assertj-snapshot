@@ -4,6 +4,7 @@ import java.io.File;
 import java.nio.file.Path;
 import java.util.Optional;
 import org.assertj.core.api.Assertions;
+import org.assertj.snapshot.api.UpdateMode;
 import org.assertj.snapshot.internal.utils.FileUtils;
 import org.assertj.snapshot.internal.utils.FileUtilsImpl;
 import org.assertj.snapshot.internal.utils.JSONUtils;
@@ -15,7 +16,7 @@ public class InternalFileAssertions {
 
   private static final String SNAPSHOTS_DIR = "snapshots";
 
-  public static void assertEqual(final Object actual, final UPDATE_MODE updateMode) {
+  public static void assertEqual(final Object actual, final UpdateMode updateMode) {
     final AssertingTestCase testCase = TestCaseFinder.getTestCase();
     final File sourceFolderOfTestCase =
         SourceCodeLocator.getSourceFolder(testCase.getClassName(), testCase.getFile());
@@ -32,8 +33,8 @@ public class InternalFileAssertions {
 
     final boolean expectedDoesNotExist = !snapshotOpt.isPresent();
     final boolean shouldUpdate =
-        expectedDoesNotExist && updateMode == UPDATE_MODE.UPDATE_IF_NO_PREVIOUS_SNAPSHOT //
-            || updateMode == UPDATE_MODE.UPDATE_ALWAYS;
+        expectedDoesNotExist && updateMode == UpdateMode.UPDATE_IF_NO_PREVIOUS_SNAPSHOT //
+            || updateMode == UpdateMode.UPDATE_ALWAYS;
     if (shouldUpdate) {
       fileUtils.writeFileContent(snapshotFile, actualJson);
     } else {

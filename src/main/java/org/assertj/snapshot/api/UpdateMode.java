@@ -1,6 +1,6 @@
-package org.assertj.snapshot.internal.assertions;
+package org.assertj.snapshot.api;
 
-public enum UPDATE_MODE {
+public enum UpdateMode {
   /**
    * The default mode. Assertions are made against recorded snapshots, if any. If no recorded
    * snapshots, they are created.

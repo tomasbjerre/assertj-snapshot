@@ -3,6 +3,7 @@ package org.assertj.snapshot.internal.assertions;
 import java.io.File;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import org.assertj.snapshot.api.UpdateMode;
 import org.assertj.snapshot.internal.utils.FileUtils;
 import org.assertj.snapshot.internal.utils.FileUtilsImpl;
 import org.assertj.snapshot.internal.utils.JSONUtils;
@@ -14,13 +15,13 @@ class InternalInlineSnapshotCapturer {
   static final String CAPTURE_SNAPSHOT = "<capture-snapshot>";
 
   public static void assertEqual(
-      final Object actual, final String expected, final UPDATE_MODE updateMode) {
+      final Object actual, final String expected, final UpdateMode updateMode) {
 
     final boolean expectedDoesNotExist =
         expected == null || expected.equals(CAPTURE_SNAPSHOT) || expected.trim().isEmpty();
     final boolean shouldUpdate =
-        expectedDoesNotExist && updateMode == UPDATE_MODE.UPDATE_IF_NO_PREVIOUS_SNAPSHOT //
-            || updateMode == UPDATE_MODE.UPDATE_ALWAYS;
+        expectedDoesNotExist && updateMode == UpdateMode.UPDATE_IF_NO_PREVIOUS_SNAPSHOT //
+            || updateMode == UpdateMode.UPDATE_ALWAYS;
     if (shouldUpdate) {
       InternalInlineSnapshotCapturer.captureInlineSnapshot(actual);
     } else {
