@@ -2,6 +2,12 @@
 
 Changelog of assertj-snapshot.
 
+## 1.0.1 (2023-06-27)
+
+### Bug Fixes
+
+-  naming ([1f54c](https://github.com/tomasbjerre/assertj-snapshot/commit/1f54cb5e958183f) Tomas Bjerre)  
+
 ## 1.0.0 (2023-06-26)
 
 ### Breaking changes
