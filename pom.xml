@@ -1,63 +1,63 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?><project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd ">
-	<modelVersion>4.0.0</modelVersion>
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd ">
+  <modelVersion>4.0.0</modelVersion>
 
-	<parent>
-		<groupId>se.bjurr.bom</groupId>
-		<artifactId>bjurr-bom</artifactId>
-		<version>0.7.0</version>
-	</parent>
+  <parent>
+    <groupId>se.bjurr.maven</groupId>
+    <artifactId>bjurr-maven-parent</artifactId>
+    <version>1.1.4</version>
+  </parent>
+  <groupId>se.bjurr.assertj.snapshot</groupId>
 
-	<artifactId>assertj-snapshot</artifactId>
-	<version>1.0.2-SNAPSHOT</version>
-	<groupId>se.bjurr.assertj.snapshot</groupId>
+  <artifactId>assertj-snapshot</artifactId>
+  <version>1.0.2-SNAPSHOT</version>
 
-	<name>AssertJ fluent assertions for snapshots</name>
-	<description>Rich and fluent assertions for testing snapshots</description>
-	<inceptionYear>2022</inceptionYear>
+  <name>AssertJ fluent assertions for snapshots</name>
+  <description>Rich and fluent assertions for testing snapshots</description>
+  <inceptionYear>2025</inceptionYear>
 
-	<scm>
-		<developerConnection>
-			scm:git:git@github.com:tomasbjerre/assertj-snapshot.git</developerConnection>
-		<connection>scm:git:https://github.com/tomasbjerre/assertj-snapshot.git</connection>
-		<url>https://github.com/tomasbjerre/assertj-snapshot</url>
-		<tag>assertj-snapshot-1.0.1</tag>
-	</scm>
+  <scm>
+    <connection>scm:git:https://github.com/tomasbjerre/assertj-snapshot.git</connection>
+    <developerConnection>scm:git:git@github.com:tomasbjerre/assertj-snapshot.git</developerConnection>
+    <tag>assertj-snapshot-1.0.1</tag>
+    <url>https://github.com/tomasbjerre/assertj-snapshot</url>
+  </scm>
 
-	<issueManagement>
-		<system>GitHub</system>
-		<url>https://github.com/tomasbjerre/assertj-snapshot/issues</url>
-	</issueManagement>
+  <issueManagement>
+    <system>GitHub</system>
+    <url>https://github.com/tomasbjerre/assertj-snapshot/issues</url>
+  </issueManagement>
 
-	<properties>
-		<assertj-core.version>3.23.1</assertj-core.version>
-		<jackson-databind.version>2.13.3</jackson-databind.version>
-		<maven.compiler.target>17</maven.compiler.target>
-		<maven.compiler.source>17</maven.compiler.source>
-		<maven.compiler.release>17</maven.compiler.release>
-	</properties>
+  <properties>
+    <assertj-core.version>3.23.1</assertj-core.version>
+    <jackson-databind.version>2.19.2</jackson-databind.version>
+    <maven.compiler.target>17</maven.compiler.target>
+    <maven.compiler.source>17</maven.compiler.source>
+    <maven.compiler.release>17</maven.compiler.release>
+  </properties>
 
-	<dependencies>
-		<dependency>
-			<groupId>com.github.javaparser</groupId>
-			<artifactId>javaparser-symbol-solver-core</artifactId>
-			<version>3.25.3</version>
-		</dependency>
-		<dependency>
-			<groupId>org.assertj</groupId>
-			<artifactId>assertj-core</artifactId>
-			<version>${assertj-core.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>com.fasterxml.jackson.core</groupId>
-			<artifactId>jackson-databind</artifactId>
-			<version>${jackson-databind.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.junit.jupiter</groupId>
-			<artifactId>junit-jupiter</artifactId>
-			<version>5.9.3</version>
-			<scope>test</scope>
-		</dependency>
-	</dependencies>
+  <dependencies>
+    <dependency>
+      <groupId>com.github.javaparser</groupId>
+      <artifactId>javaparser-symbol-solver-core</artifactId>
+      <version>3.25.3</version>
+    </dependency>
+    <dependency>
+      <groupId>org.assertj</groupId>
+      <artifactId>assertj-core</artifactId>
+      <version>${assertj-core.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-databind</artifactId>
+      <version>${jackson-databind.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter</artifactId>
+      <version>5.9.3</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
 
 </project>
