@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?><project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd ">
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd ">
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
@@ -9,7 +10,7 @@
   <groupId>se.bjurr.assertj.snapshot</groupId>
 
   <artifactId>assertj-snapshot</artifactId>
-  <version>1.0.2-SNAPSHOT</version>
+  <version>1.0.2</version>
 
   <name>AssertJ fluent assertions for snapshots</name>
   <description>Rich and fluent assertions for testing snapshots</description>
@@ -18,7 +19,7 @@
   <scm>
     <connection>scm:git:https://github.com/tomasbjerre/assertj-snapshot.git</connection>
     <developerConnection>scm:git:git@github.com:tomasbjerre/assertj-snapshot.git</developerConnection>
-    <tag>assertj-snapshot-1.0.1</tag>
+    <tag>assertj-snapshot-1.0.2</tag>
     <url>https://github.com/tomasbjerre/assertj-snapshot</url>
   </scm>
 
