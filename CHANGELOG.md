@@ -2,6 +2,11 @@
 
 Changelog of assertj-snapshot.
 
+## 1.0.2 (2025-07-28)
+
+### Dependency updates
+
+- dependencies ([5aea1](https://github.com/tomasbjerre/assertj-snapshot/commit/5aea1523bc9730c) Tomas Bjerre)  
 ## 1.0.1 (2023-06-27)
 
 ### Bug Fixes
