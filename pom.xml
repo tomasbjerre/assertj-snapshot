@@ -10,7 +10,7 @@
   <groupId>se.bjurr.assertj.snapshot</groupId>
 
   <artifactId>assertj-snapshot</artifactId>
-  <version>1.0.2</version>
+  <version>1.0.3-SNAPSHOT</version>
 
   <name>AssertJ fluent assertions for snapshots</name>
   <description>Rich and fluent assertions for testing snapshots</description>
@@ -19,7 +19,7 @@
   <scm>
     <connection>scm:git:https://github.com/tomasbjerre/assertj-snapshot.git</connection>
     <developerConnection>scm:git:git@github.com:tomasbjerre/assertj-snapshot.git</developerConnection>
-    <tag>assertj-snapshot-1.0.2</tag>
+    <tag>assertj-snapshot-1.0.1</tag>
     <url>https://github.com/tomasbjerre/assertj-snapshot</url>
   </scm>
 
