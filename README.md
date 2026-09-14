@@ -1,5 +1,5 @@
 # AssertJ Snapshot
-[![Maven Central](https://img.shields.io/maven-central/v/se.bjurr.assertj.snapshot/assertj-snapshot.svg?label=Maven%20Central)](https://search.maven.org/search?q=g:%22se.bjurr.assertj.snapshot%22%20AND%20a:%22assertj-snapshot%22)
+[![Maven Central](https://img.shields.io/maven-central/v/se.bjurr.assertj.snapshot/assertj-snapshot.svg?label=Maven%20Central)](https://central.sonatype.com/artifact/se.bjurr.assertj.snapshot/assertj-snapshot)
 
 This library extends [AssertJ](https://github.com/assertj/assertj) with snapshot assertions. Inspired by the same feature in [Jest](https://jestjs.io/docs/snapshot-testing).
 
