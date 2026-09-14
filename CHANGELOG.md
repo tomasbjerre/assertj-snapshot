@@ -1,3 +1,56 @@
+## 1.1.0 (2026-09-14)
+
+### Features
+
+-  **ci**  add draft/publish release workflow ([f3d92](https://github.com/tomasbjerre/assertj-snapshot/commit/f3d92e26efdbe48) Tomas Bjerre)  
+
+### Dependency updates
+
+- update parent and dependency versions ([0a184](https://github.com/tomasbjerre/assertj-snapshot/commit/0a184e9bdaab10f) Tomas Bjerre)  
+- dependencies ([25dd8](https://github.com/tomasbjerre/assertj-snapshot/commit/25dd8c304f61f20) Tomas Bjerre)  
+### Other changes
+
+**Superseded by centralized publish-draft-releases.yaml in .github**
+
+
+[a5cb8](https://github.com/tomasbjerre/assertj-snapshot/commit/a5cb822886db4f9) Tomas Bjerre *2026-09-14 19:59:02*
+
+**Auto-publish pending draft releases weekly**
+
+
+[d7dfa](https://github.com/tomasbjerre/assertj-snapshot/commit/d7dfacff53bd938) Tomas Bjerre *2026-09-14 19:47:56*
+
+**Remove accidentally-recreated override; this repo has real CI and should inherit full automerge from the account default**
+
+
+[a7ad0](https://github.com/tomasbjerre/assertj-snapshot/commit/a7ad06e4b1a8fe5) Tomas Bjerre *2026-09-14 19:36:52*
+
+**Add 10-day minimumReleaseAge to reduce supply-chain risk from very-fresh releases**
+
+
+[5eba4](https://github.com/tomasbjerre/assertj-snapshot/commit/5eba4f05140bf89) Tomas Bjerre *2026-09-14 18:48:07*
+
+**Real CI now exists, allow automerge again**
+
+
+[6173a](https://github.com/tomasbjerre/assertj-snapshot/commit/6173afdf4617e35) Tomas Bjerre *2026-09-14 18:22:55*
+
+**Add PR CI via shared bundle-maven-ci workflow**
+
+
+[6efde](https://github.com/tomasbjerre/assertj-snapshot/commit/6efde97536c5685) Tomas Bjerre *2026-09-14 18:22:52*
+
+**No CI in this repo, never automerge dependency PRs here**
+
+
+[1687a](https://github.com/tomasbjerre/assertj-snapshot/commit/1687a1261610bb8) Tomas Bjerre *2026-09-14 18:02:38*
+
+**[maven-release-plugin] prepare for next development iteration**
+
+
+[52621](https://github.com/tomasbjerre/assertj-snapshot/commit/5262162196a594c) Tomas Bjerre *2025-07-28 10:22:58*
+
+
 # assertj-snapshot changelog
 
 Changelog of assertj-snapshot.
