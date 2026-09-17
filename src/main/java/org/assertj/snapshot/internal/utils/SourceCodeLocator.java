@@ -45,7 +45,11 @@ public class SourceCodeLocator {
   private static BiPredicate<Path, BasicFileAttributes> matches(
       final String fileName, final String sourceCodePackageFolder) {
     return (file, attr) -> {
-      final String dir = file.getParent().toFile().getAbsolutePath();
+      final Path parent = file.getParent();
+      if (parent == null) {
+        return false;
+      }
+      final String dir = parent.toFile().getAbsolutePath();
       final String name = file.toFile().getName();
       return dir.endsWith(sourceCodePackageFolder) && name.equals(fileName);
     };
