@@ -1,3 +1,11 @@
+## 1.1.1 (2026-09-17)
+
+### Dependency updates
+
+- update dependency se.bjurr.maven:bjurr-maven-parent to v1.2.1 (#8) ([4a495](https://github.com/tomasbjerre/assertj-snapshot/commit/4a4953a4ceac538) renovate[bot])  
+- update dependency se.bjurr.maven:bjurr-maven-parent to v1.2.0 (#7) ([30062](https://github.com/tomasbjerre/assertj-snapshot/commit/30062d24a058a66) renovate[bot])  
+- update dependency maven-wrapper to v3.3.4 (#6) ([13762](https://github.com/tomasbjerre/assertj-snapshot/commit/13762a5431caabb) renovate[bot])  
+- update dependency maven to v3.9.16 (#5) ([e5084](https://github.com/tomasbjerre/assertj-snapshot/commit/e5084a866907119) renovate[bot])  
 ## 1.1.0 (2026-09-14)
 
 ### Features
