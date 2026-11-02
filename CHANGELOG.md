@@ -1,3 +1,9 @@
+## 1.1.3 (2026-11-02)
+
+### Bug Fixes
+
+-  bump bjurr-maven-parent to 1.2.4 ([62387](https://github.com/tomasbjerre/assertj-snapshot/commit/6238763b53a77cd) Tomas Bjerre)  
+
 ## 1.1.1 (2026-09-17)
 
 ### Dependency updates
